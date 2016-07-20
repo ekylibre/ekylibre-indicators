@@ -37,7 +37,7 @@ task :fetch_exception_mails do
     folders = imap.list("", "*").map(&:name)
     folder = prompt.select "Folder to search?", folders
 
-    imap.select("Exceptions")
+    imap.select(folder)
     messages = imap.search(["SENTSINCE", (Time.now - 7*24*60*60).strftime("%d-%b-%Y")])
     count = messages.count.to_f
     bar = TTY::ProgressBar.new("Fetching messages [:bar :percent]", width: 20, total: count)
