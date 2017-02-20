@@ -11,7 +11,7 @@ end
 
 task :fetch_exception_mails do
   pastel = Pastel.new
-  imap = Net::IMAP.new('collaboration.ekylibre.com')
+  imap = Net::IMAP.new('group.ekylibre.com', ssl: true, certs: nil, verify: false)
   prompt = TTY::Prompt.new
   logged_in = false
   skip = false
