@@ -57,7 +57,7 @@ task :fetch_opened_issues_count do
   page = open("https://github.com/ekylibre/ekylibre/pulse")
   html = Nokogiri::HTML.parse(page.read)
   summary = html.css(".summary-stats")
-  open_issues_number = summary.at("a:contains('New Issues')").css(".num").text.strip
+  open_issues_number = summary.at("a:contains('New Issue')").css(".num").text.strip
   puts pastel.underline("Issues opened this week :\t#{pastel.bold(open_issues_number)}")
 end
 
@@ -66,7 +66,7 @@ task :fetch_closed_issues_count do
   page = open("https://github.com/ekylibre/ekylibre/pulse")
   html = Nokogiri::HTML.parse(page.read)
   summary = html.css(".summary-stats")
-  closed_issues_number = summary.at("a:contains('Closed Issues')").css(".num").text.strip
+  closed_issues_number = summary.at("a:contains('Closed Issue')").css(".num").text.strip
   puts pastel.underline("Issues closed this week :\t#{pastel.bold(closed_issues_number)}")
 end
 
@@ -75,7 +75,7 @@ task :fetch_commits_count do
   page = open("https://github.com/ekylibre/ekylibre/pulse")
   html = Nokogiri::HTML.parse(page.read)
   summary = html.css(".diffstat-summary")
-  commit_number = summary.at("strong:contains('commits')").css("span").text
+  commit_number = summary.at("strong:contains('commit')").css("span").text
   puts pastel.underline("Commits made this week :\t#{pastel.bold(commit_number)}")
 end
 
