@@ -4,6 +4,7 @@ require 'open-uri'
 require 'tty'
 require 'tty-prompt'
 require 'byebug'
+require 'base64'
 
 task :pad do
   puts ""
@@ -45,7 +46,11 @@ task :fetch_exception_mails do
       bar.advance
       imap.fetch(m, "ENVELOPE")[0].attr["ENVELOPE"]
     end
-    subjects.select { |e| e.from == "notifications@ekylibre.com" }
+    subjects = subjects.select { |e| "#{e.from.first.mailbox}@#{e.from.first.host}" == "notifications@ekylibre.com" }
+    if ENV['EXCLUDE_TENANT_NOT_FOUND']
+      subjects = subjects.reject { |e| Base64.decode64(e.subject.split('?')[-2]) =~ /Could not find schema/ }
+    end
+
     print "\r                                         "
     puts pastel.underline("\nNew Exception mails :\t\t#{pastel.bold(subjects.count.to_s)}")
     puts pastel.underline("\tout of which\t\t#{pastel.bold(subjects.map(&:subject).uniq.count.to_s)} unique ones")
