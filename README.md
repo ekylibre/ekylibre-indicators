@@ -11,8 +11,13 @@ A small rake task to fetch the indicators we track on the dev side of Ekylibre.
 
 ## Dependencies
 
+```bash
+bundle install
+```
+Or
+
 ```ruby
-gem install 'net/imap'
+gem install 'net-imap'
 gem install 'nokogiri'
 gem install 'open-uri'
 gem install 'tty'

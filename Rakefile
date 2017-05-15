@@ -1,10 +1,13 @@
+require 'rubygems'
+require 'bundler/setup'
 require 'net/imap'
-require 'nokogiri'
 require 'open-uri'
+require 'base64'
+
+require 'nokogiri'
 require 'tty'
 require 'tty-prompt'
 require 'byebug'
-require 'base64'
 
 task :pad do
   puts ""
