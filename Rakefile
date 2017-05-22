@@ -21,7 +21,7 @@ task :fetch_exception_mails do
   skip = false
 
   while !logged_in && !skip
-    puts "\n== BlueMind Exception Mails :"
+    puts "\n== Exception Mails :"
     login = prompt.ask "Login : (___@ekylibre.com):\t"
     password = prompt.mask "Password:\t\t\t"
 
