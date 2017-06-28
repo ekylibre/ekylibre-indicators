@@ -83,7 +83,7 @@ task :fetch_commits_count do
   page = open("https://github.com/ekylibre/ekylibre/pulse")
   html = Nokogiri::HTML.parse(page.read)
   summary = html.css(".diffstat-summary")
-  commit_number = summary.at("strong:contains('commit')").css("span").text
+  commit_number = summary.search("strong:contains('commits')").last.css("span").text
   puts pastel.underline("Commits made this week :\t#{pastel.bold(commit_number)}")
 end
 
